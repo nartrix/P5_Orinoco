@@ -1,27 +1,22 @@
-let paramsUrl = new URL(window.location).searchParams;
+const paramsUrl = new URL(window.location).searchParams;
 
-let orderId = paramsUrl.get("orderId");
+const orderId = paramsUrl.get("orderId");
 
-//RECUPERATION DES DONNEES CONTACT
-let contact = JSON.parse(localStorage.getItem("contact"));
+const contact = JSON.parse(localStorage.getItem("contact"));
 
-// RECUPERATION DU PRIX TOTAL
-let prixTotal = JSON.parse(localStorage.getItem("prixTotal"));
+const totalPrice = JSON.parse(localStorage.getItem("prixTotal"));
 
+getOrder();
 
-getorder();
-
-// AFFICHAGE HTML
 function getOrder(){
-    confirmation.innerHTML += `
+    document.getElementById("confirm").innerHTML += `
+        <p>Merci  ${contact.firstName } ${contact.lastName}</p>
         <p>
-        Merci  ${contact.firstName } ${contact.lastName} 
+        Nous avons bien reçu votre commande d'un montant de: ${totalPrice}
+        Un email vous sera envoyer à l'adresse : ${contact.email} a l'envoi de votre commande
         </p>
-        <hr>
-        <p>Nous avons bien reçu votre commande N° ${orderId} </br>
-        D'un montant de :${prixTotal}  </br>
-        </p>
-        Un email vous sera envoyer à l'adresse : </br> ${contact.email} a l'envoi de votre commande  
     `
 };
+
+
 

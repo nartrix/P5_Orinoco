@@ -5,7 +5,7 @@ class Teddies {
         price,
         _id,
         description,
-        lenses,
+        colors,
         quantity
     }) {
         this.name = name;
@@ -13,7 +13,7 @@ class Teddies {
         this.price = price;
         this.id = _id;
         this.description = description;
-        this.lenses = lenses;
+        this.colors = colors;
         this.quantity = parseInt(quantity, 10); // transforme chaine de caractère en nombre
     }
 };

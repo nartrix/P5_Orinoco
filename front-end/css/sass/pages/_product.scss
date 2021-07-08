@@ -1,0 +1,15 @@
+.page-product {
+    display: flex;
+    justify-content: center;
+    img {
+        width: 100%;
+        max-height: 600px;
+    }
+
+    .info-product {
+
+        .description {
+            margin-bottom: 1rem;
+        }
+    }
+}
