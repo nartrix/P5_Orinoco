@@ -1,36 +1,102 @@
-let teddies = JSON.parse(localStorage.getItem("panier")) ? JSON.parse(localStorage.getItem("panier")) : [];
+const teddies = JSON.parse(localStorage.getItem("panier")) ? JSON.parse(localStorage.getItem("panier")) : [];
 
-console.log(teddies);
-
-let container = document.getElementById("container");
+const container = document.getElementById("shop-container");
 
 let prixPanier = 0;
 
-let addIdShop = [];
+const addIdShop = [];
 
 function priceTotalShop(teddies){
   prixPanier += teddies.quantity * teddies.price / 100;
-  //AFFICHE PRIX TOTAL DU PANIER // ENVOI AU LOCALSTORAGE
-  let prixTotal = document.getElementById('prixTotal').textContent = prixPanier + " € ";
+  let prixTotal = document.getElementById('total-price').textContent = prixPanier + " € ";
   localStorage.setItem('prixTotal', JSON.stringify(prixTotal));
 };
 
+//Display item in shop
 teddies.forEach((teddies, i) => {
   container.innerHTML += `
     <tr>
-        <td class="srcimage"><img src=${teddies.imageUrl} alt="" /></td>
+        <td class="img-shop align-top"><img src=${teddies.imageUrl} alt="photo ${teddies.name}"></td>
         <td>${teddies.name}</td>
         <td>${teddies.price / 100} €</td>
         <td>${teddies.quantity}</td>
-        <td><a href="#" class="deleteCamera" data-id="${i}"> <i class="fas fa-trash-alt"></i></a></td>
+        <td><a href="#" class="delete-teddies"><i class="fas fa-trash-alt"></i></a></td>
         <td >${teddies.quantity * teddies.price / 100} €</td>
     </tr>
   `;
-  //APPEL FONCTION
+
   priceTotalShop(teddies)
- 
- // BOUCLE INCREMENT ID PRODUIT
+
   for (let i = 0; i < teddies.quantity; i++) {
     addIdShop.push(teddies.id);
   }
+});
+
+
+
+const cleanPanier = document.getElementById('viderPanier')
+cleanPanier.addEventListener('click',  deletePanier);
+
+//Delete all shop
+function deletePanier() {
+  if (teddies == null) {
+  } else {
+    container.remove();
+    localStorage.clear();
+    window.location.reload();
+  }
+};
+
+
+function sendOrder() {
+  const form = document.getElementById("form");
+
+  //Check if the forms are valid and id exist
+  if (form.reportValidity() == true && addIdShop.length>0) {
+    let contact = {
+      'firstName': document.getElementById("first-name").value,
+      'lastName': document.getElementById("last-name").value,
+      'address': document.getElementById("address").value,
+      'city': document.getElementById("city").value,
+      'email': document.getElementById("email").value
+    };
+
+    let products = addIdShop;
+
+    let formClient = JSON.stringify({ 
+      contact, 
+      products,
+    });
+
+    //Call api order
+    fetch('http://localhost:3000/api/teddies/order', {
+      method: 'POST',
+      headers: {
+        'content-type': "application/json"
+      },
+      mode: "cors",
+      body: formClient
+      })
+      .then(function (response) {
+        return response.json()
+      })
+      .then(function (res) {
+        localStorage.setItem("contact", JSON.stringify(res.contact));
+        window.location.assign("confirmation.html?orderId=" + res.orderId);
+      })
+      .catch(function (err) {
+        //error
+      });
+  }
+  else{
+    alert("ajouter des articles et remplir le formulaire demander")
+  };
+}
+
+const sendForm = document.getElementById("send-form");
+
+//Submit
+sendForm.addEventListener('click', function (event) {
+  event.preventDefault();
+  sendOrder();
 });

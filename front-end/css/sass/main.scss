@@ -8,6 +8,7 @@
 @import 'base/reset';
 @import 'base/typography';
 
+@import 'components/buttons';
 @import 'components/card';
 
 @import 'layout/header';
@@ -15,4 +16,5 @@
 
 @import 'pages/home';
 @import 'pages/product';
+@import 'pages/shop';
 @import 'pages/confirmation';
