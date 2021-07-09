@@ -1,6 +1,6 @@
 const teddies = JSON.parse(localStorage.getItem("panier")) ? JSON.parse(localStorage.getItem("panier")) : [];
 
-let container = document.getElementById("shop-container");
+const container = document.getElementById("shop-container");
 
 let prixPanier = 0;
 
@@ -8,7 +8,7 @@ const addIdShop = [];
 
 function priceTotalShop(teddies){
   prixPanier += teddies.quantity * teddies.price / 100;
-  let prixTotal = document.getElementById('prixTotal').textContent = prixPanier + " € ";
+  let prixTotal = document.getElementById('total-price').textContent = prixPanier + " € ";
   localStorage.setItem('prixTotal', JSON.stringify(prixTotal));
 };
 
@@ -89,7 +89,7 @@ function sendOrder() {
       });
   }
   else{
-    alert("remplir le formulaire demander")
+    alert("ajouter des articles et remplir le formulaire demander")
   };
 }
 

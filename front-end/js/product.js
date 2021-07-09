@@ -14,23 +14,21 @@ const addLocalStorage = panier => {
 
 const display = teddies => {
   container.innerHTML +=`
-    <div class="container" id="cardProduct">
+    <div class="col">
       <img src=${teddies.imageUrl} alt="photo ${teddies.name} class="img-fluid">
       <div class="info-product">
-        <p class="nom">${teddies.name}</p>
-        <span class="description">
-          ${teddies.description}
-        </span>
-        <select class="options" id="option">
+        <h2 class="name-product">${teddies.name}</h2>
+        <p class="description">${teddies.description}</p>
+        <select class="options-product" id="option">
           <option>Choix Teddies</option>
         </select>
-        <p class="prix">Prix Unitaire: ${teddies.price/ 100}€</p>
-        <select class="quantite" id="quantity">           
+        <p class="price">Prix Unitaire : <strong>${teddies.price/ 100}€</strong></p>
+        <select class="quantity-product" id="quantity">           
           <option value="1">1</option>
           <option value="2">2</option>
           <option value="3">3</option>
         </select>         
-        <a href ="/front-end/pages/shop.html" role="button" type="submit" class="btn btn-primary" id="panier">ajouter au panier</a>
+        <a href ="/front-end/pages/shop.html" role="button" type="submit" class="btn" id="panier">ajouter au panier</a>
       </div>
     </div>
   `;

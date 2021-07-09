@@ -36,7 +36,6 @@ function renderProducts(data) {
         card.querySelector('.card-img-top').setAttribute('src', item.imageUrl);
         card.querySelector('.card-img-top').setAttribute('alt', 'photo' + ' ' + item.name);
         card.querySelector('.card-title').textContent = item.name;
-        card.querySelector('.card-text').textContent = Math.fround(item.price / 100, 2) + '€';
         card.querySelector('.card-body a').setAttribute('href', 'pages/product.html?id=' + item._id );
 
         listProducts.appendChild(card);
