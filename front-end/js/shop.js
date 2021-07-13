@@ -34,11 +34,11 @@ teddies.forEach((teddies, i) => {
 
 
 
-const cleanPanier = document.getElementById('viderPanier')
-cleanPanier.addEventListener('click',  deletePanier);
+const cleanShop = document.getElementById('viderPanier')
+cleanShop.addEventListener('click',  deleteShop);
 
 //Delete all shop
-function deletePanier() {
+function deleteShop() {
   if (teddies == null) {
   } else {
     container.remove();

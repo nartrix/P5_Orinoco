@@ -12,7 +12,7 @@ const addLocalStorage = panier => {
   localStorage.setItem('panier', JSON.stringify(panier));
 };
 
-const display = teddies => {
+const renderProduct = teddies => {
   container.innerHTML +=`
     <div class="col">
       <img src=${teddies.imageUrl} alt="photo ${teddies.name} class="img-fluid">
@@ -71,7 +71,7 @@ fetch(`${API_URL}api/teddies/` + id)
 })
 .then(function(data) {
     let teddies = new Teddies(data)
-    display(teddies);
+    renderProduct(teddies);
 
 })
 .catch(function(err) {

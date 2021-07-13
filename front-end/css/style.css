@@ -109,6 +109,7 @@ footer {
   font-family: 'Fredoka One', cursive; }
 .page-product img {
   width: 100%;
+  object-fit: cover;
   max-height: 600px;
   margin-bottom: 1rem; }
 .page-product .info-product {
