@@ -47,7 +47,6 @@ function deletePanier() {
   }
 };
 
-
 function sendOrder() {
   const form = document.getElementById("form");
 
