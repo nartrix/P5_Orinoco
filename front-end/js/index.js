@@ -22,15 +22,14 @@ function getProducts() {
 
 function renderProducts(data) {
     // HTML template recovery
-    const cardTemplate = document.querySelector('#template .col');
-    /* console.log(cardTemplate); */
+    const cardTemplate = document.getElementById("template");
     const listProducts = document.getElementById("card-products");
 
     // render each data item
     /* console.log(items) */
     data.forEach( item => {
         console.log(item)
-        let card = cardTemplate.cloneNode(true);
+        let card = document.importNode(cardTemplate.content, true);
     
         // add data to element
         card.querySelector('.card-img-top').setAttribute('src', item.imageUrl);

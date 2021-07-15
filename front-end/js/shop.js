@@ -13,26 +13,24 @@ function priceTotalShop(teddies){
 };
 
 //Display item in shop
-teddies.forEach((teddies, i) => {
+teddies.forEach((teddy) => {
   container.innerHTML += `
     <tr>
-        <td class="img-shop align-top"><img src=${teddies.imageUrl} alt="photo ${teddies.name}"></td>
-        <td>${teddies.name}</td>
-        <td>${teddies.price / 100} €</td>
-        <td>${teddies.quantity}</td>
+        <td class="img-shop align-top"><img src=${teddy.imageUrl} alt="photo ${teddy.name}"></td>
+        <td>${teddy.name}</td>
+        <td>${teddy.price / 100} €</td>
+        <td>${teddy.quantity}</td>
         <td><a href="#" class="delete-teddies"><i class="fas fa-trash-alt"></i></a></td>
-        <td >${teddies.quantity * teddies.price / 100} €</td>
+        <td >${teddy.quantity * teddy.price / 100} €</td>
     </tr>
   `;
 
-  priceTotalShop(teddies)
+  priceTotalShop(teddy)
 
-  for (let i = 0; i < teddies.quantity; i++) {
-    addIdShop.push(teddies.id);
+  for (let i = 0; i < teddy.quantity; i++) {
+    addIdShop.push(teddy.id);
   }
 });
-
-
 
 const cleanShop = document.getElementById('viderPanier')
 cleanShop.addEventListener('click',  deleteShop);
